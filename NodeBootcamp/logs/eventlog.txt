@@ -1,0 +1,1 @@
+20230111	16:48:45	 94e2b9e8-dfa8-4280-8187-a23b0b57fa08	log event emmited
