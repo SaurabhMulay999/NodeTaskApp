@@ -4,21 +4,22 @@ const fspromises=require('fs').promises;
 const path=require('path');
 const { format } = require('date-fns');
 
-const logEvent=async(message)=>{
+const logEvent=async(message,logName)=>{
     const dateTime=`${format(new Date(),'yyyyMMdd\tHH:mm:ss')}`;
     const logItem=`${dateTime}\t ${uuid()}\t${message}`;
 
-    console.log(logItem);
+    console.log(logName);
     try{
         //what if the directory is not there
-        if(!fs.existsSync(path.join(__dirname+'logs'))){
-            await fspromises.mkdir('logs',()=>console.log('Director is created'));
-        }
         
-            await fspromises.appendFile(path.join(__dirname,'logs','eventlog.txt'),logItem);
+        console.log(__dirname);
+
+        await fspromises.appendFile(path.join(__dirname,'logs',logName),logItem);
 
     }
     catch(err){
+       
+
         console.log(err);
 
     }

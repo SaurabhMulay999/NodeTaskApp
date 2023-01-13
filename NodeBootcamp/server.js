@@ -15,10 +15,13 @@ const port=process.env.port || 3000;
 class Emmiter extends EventEmiter{};
 //initialise the objectt
 const myemiter=new Emmiter();
+myemiter.on('log',(msg,filename)=>logEvent(msg,filename));
+
 
 
 const serveFile=async(filepath,contentType,res)=>{
     try{
+        //myemiter.emit('log',`${req.url}\t ${req.method}`,'reqLog.txt');
         //res.statusCode=200;
         const data=await fsPromises.readFile(filepath,'utf-8');
         res.writeHead(200,{'Content-Type':contentType});
@@ -27,6 +30,8 @@ const serveFile=async(filepath,contentType,res)=>{
 
     }
     catch(err){
+        //myemiter.emit();
+        myemiter.emit('log',`${err.name}\t ${err.message}`,'reqLog.txt');
         console.log(err);
         res.statusCode=500;
         res.end();
@@ -39,6 +44,8 @@ const serveFile=async(filepath,contentType,res)=>{
 
 const server=http.createServer((req,res)=>{
     console.log(req.method,req.url);
+    
+   
 
     //after loggin with url build a path and server the path 
     let filepath;
@@ -72,9 +79,9 @@ if(!extention1 && req.url.slice(-1)!=='/'){
 
 const fileexist=fs.existsSync(filepath);
 if(fileexist){
+    myemiter.emit('log',`${req.url}\t ${req.method}`,'reqLog.txt');
     serveFile(filepath,contentType,res);
-
-
+    
 }
 else{
 
@@ -120,38 +127,6 @@ switch(path.parse(filepath).base){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //add the listner for log event
 // myemiter.on('log',(msg)=>{
 //     logEvent(msg);
@@ -175,5 +150,4 @@ switch(path.parse(filepath).base){
 //         console.log('Error aya he bc')
 //         }
 //     });
-
 
