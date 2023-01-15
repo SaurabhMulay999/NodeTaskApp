@@ -10,9 +10,25 @@ app.use(logger);
 
 
 app.use(cors);
+const whitelist=['https://www.yourssite.com','https://localhost:3500'];
+const corsOptions={
+    origin:(origin,callback)=>{
+        if(whitelist.indexOf(origin)!==-1){
+            callback(null,true);
+            //check callback as 1st arg is error and other is set t true that is corsOptions the same origin
+
+
+        }
+        else{
+            callback(new Error('Not allowed by the cors'));
+
+        }
+
+    }
+}
+app.use(cors(corsOptions));
+
 //cross origin rosource sharing
-
-
 
 //MiddleWare
 //create a specific middleware....Buildin,custom and third party are types of middleware

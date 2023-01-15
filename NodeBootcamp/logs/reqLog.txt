@@ -5,3 +5,7 @@
 20230113	23:29:21	 5f2af441-4b3b-403d-8263-0502f7c8f571	GET 	 undefined 	/public/css/cssfile.css
 20230113	23:29:22	 2d003b38-b297-450f-a2c2-1c7e87083b57	GET 	 undefined 	/index.html
 20230113	23:29:22	 5cd4e6aa-44c2-4330-88b9-182897bff8f6	GET 	 undefined 	/css/cssfile.css
+20230115	17:13:51	 faffb07d-1470-4740-9547-078e518bd003	GET 	 undefined 	/
+20230115	17:14:01	 ca39ef1c-00f1-4489-9d09-1a780ee99f4e	GET 	 undefined 	/index
+20230115	17:14:08	 7bb9372e-b481-485a-86fb-94b72d7e25c7	GET 	 undefined 	/index.html
+20230115	17:16:22	 db3b2771-7b94-4a61-987f-d04e229a2183	GET 	 undefined 	/
