@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
+const validator=require('validator');
 
-const task=mongoose.model('TASK-APP-API',{
+const taskSchema=mongoose.Schema({
     taskdescription:{
         type:String,
         required:true
@@ -14,7 +15,11 @@ const task=mongoose.model('TASK-APP-API',{
 
         }
     }
-
+   
 });
+
+
+
+const task=mongoose.model('TASK-APP-API',taskSchema);
 
 module.exports=task;

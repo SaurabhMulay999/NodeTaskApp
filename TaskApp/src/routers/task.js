@@ -1,6 +1,7 @@
 const express=require('express');
 const router=new express.Router();
 const tasks=require('../models/tasks');
+const { findById } = require('../models/user');
 
 
 router.post('/tasks',(req,res)=>{
@@ -68,9 +69,22 @@ if(!functionto_checkOperation){
     res.statusCode(400).send('Not a valid property');
 }
 try{
-    const TaskData=await tasks.findByIdAndUpdate(req.params.id,req.body,{runValidators:true});
-    console.log(TaskData);
-    res.send(TaskData);
+
+    const taskdata=await tasks.findById(req.params.id);
+    console.log(taskdata);
+    Object_Task.forEach((tasks_1)=>{
+        taskdata[tasks_1]=req.body[tasks_1];
+    })
+    console.log(taskdata);
+
+    await taskdata.save();
+    res.statusCode(200).send();
+
+
+
+    //const TaskData=await tasks.findByIdAndUpdate(req.params.id,req.body,{runValidators:true});
+    //console.log(TaskData);
+    //res.send(TaskData);
 }
 catch(e){
     console.log(e)}

@@ -22,3 +22,30 @@ app.use(taskUseRouter);
 app.listen(port,()=>{
     console.log('Port has been started succesfully');
 })
+
+// const bcrypt=require('bcrypt');
+
+// const myfunc=async()=>{
+//     const password='poker@133';
+//     const hashedVersion=await bcrypt.hash(password,8);
+//     //8 is number of epoch so it is not too much and too less so balanced for speed and good hashing
+//     console.log(password,hashedVersion);
+//     const ismatched=await bcrypt.compare('121212',hashedVersion);
+//     console.log(ismatched);
+
+// }
+// myfunc();
+
+//jsonwebToken ->
+
+const jwt=require('jsonwebtoken');
+const myfunction=async()=>{
+    const token=jwt.sign({_id:'12345678'},'abcdefzghi',{expiresIn:'7 days'});
+    console.log(token);
+    //how to varify the token
+    const data=jwt.verify(token,'abcdefzghi');
+    //That second argument is secret strng...
+    console.log(data);
+
+}
+myfunction();
